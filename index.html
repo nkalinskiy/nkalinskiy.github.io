@@ -374,20 +374,20 @@ class FiberContext(
     </div>
 
         <div class="sl-block" data-block-type="code" style="width: 1093.2px; height: 454px; left: 93px; top: 161px;" data-name="code-dc2e86" data-block-id="6edb1afc598e01fc2e6f0a6db531787a"><div class="sl-block-content notranslate" data-highlight-theme="monokai" data-code-frame="none" style="z-index: 11;"><pre style="font-size: 20px; line-height: 24px;" class="scala"><code data-line-numbers="1-20|2|3,8-11,13-16|4|7" style="padding: 5px;" data-fragment-index="0">trait Runtime[+R] {
-  def environment: R
-  def platform: Platform
-  def unsafeRun[E, A](zio: =&gt; ZIO[R, E, A]): A
+  def environment: ZEnvironment[R]
+  def fiberRefs: FiberRefs
+  def runtimeFlags: RuntimeFlags
+  
+  trait UnsafeAPI {
+    def run[E, A](zio: ZIO[R, E, A]): Exit[E, A]
+  }
 }
 object Runtime {
-  def apply[R](env: R, platform: Platform): Runtime
-}
-
-abstract class Platform {
-  def executor: Executor
-}
-object Platform {
-  def makeDefault(): Platform
-  def global(): Platform
+  def apply[R](
+    r: ZEnvironment[R],
+    fiberRefs0: FiberRefs, 
+    runtimeFlags0: RuntimeFlags
+  ): Runtime[R]
 }</code></pre></div></div>
         <div class="sl-block" data-block-type="image" style="width: 1093.2px; height: 38.7617px; left: 93px; top: 124.619px; min-width: 1px; min-height: 1px;" data-name="image-e8efaa" data-block-id="23d86560d175ec5a79ae0fb92b3640f4"><div class="sl-block-content" style="z-index: 12;" data-inline-svg="false"><img style="" data-natural-width="1805" data-natural-height="64" data-lazy-loaded="" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/2162590/images/9645239/codeHeader.svg"></div></div></section><section data-background-color="rgb(0, 8, 48)" data-id="3b45a14818ec7596ddb13c6aafbba5ce"><div class="sl-block" data-block-type="text" style="width: 1208px; left: 72px; top: 24.5px; height: auto;" data-block-id="6cdbd82cc54b8881d5ae5870fff4a73a">
         <div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text" style="z-index: 10; color: rgb(255, 255, 255);">
