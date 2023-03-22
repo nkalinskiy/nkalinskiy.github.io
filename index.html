@@ -496,7 +496,7 @@ for {
 
         <div class="sl-block" data-block-type="code" style="width: 1075.2px; height: 313px; left: 102.4px; top: 274.5px;" data-name="code-dc2e86" data-block-id="6a1703067d0b674de9a2098472b912d0">
             <div class="sl-block-content notranslate" data-highlight-theme="monokai" data-code-frame="none" style="z-index: 11;">
-        <pre style="font-size: 20px; line-height: 24px;" class="scala"><code data-line-numbers="1-4|6-10" style="padding: 5px;" data-fragment-index="0">val customScope: ZScope[Exit[Any, Any]] = ???
+        <pre style="font-size: 20px; line-height: 24px;" class="scala"><code data-line-numbers="1-10|1-4|6-10" style="padding: 5px;" data-fragment-index="0">val customScope: ZScope[Exit[Any, Any]] = ???
 val fiberOnCustomScope: UIO[Fiber[Throwable, Unit]] =
   ZIO.effect(println("Running on custom scope"))
     .forkIn(customScope)
