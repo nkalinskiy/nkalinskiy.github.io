@@ -888,7 +888,7 @@ blocker.blockOn(jdbcRequest)</code></pre>
         </div>
     </div>
 
-        <div class="sl-block" data-block-type="code" style="width: 1075.2px; height: 320px; left: 93px; top: 312.123px;" data-name="code-dc2e86" data-block-id="4ac6b4e668838108800dca493f12cd7a"><div class="sl-block-content notranslate" data-highlight-theme="monokai" data-code-frame="none" style="z-index: 11;"><pre style="font-size: 20px; line-height: 24px;" class="scala"><code data-line-numbers="1-2|4-7|9-12" style="padding: 5px;" data-fragment-index="0">val nonInterruptible =
+        <div class="sl-block" data-block-type="code" style="width: 1075.2px; height: 320px; left: 93px; top: 312.123px;" data-name="code-dc2e86" data-block-id="4ac6b4e668838108800dca493f12cd7a"><div class="sl-block-content notranslate" data-highlight-theme="monokai" data-code-frame="none" style="z-index: 11;"><pre style="font-size: 20px; line-height: 24px;" class="scala"><code data-line-numbers="1-12|1-2|4-7|9-12" style="padding: 5px;" data-fragment-index="0">val nonInterruptible =
   Sync[IO].blocking(println("blocking non interruptible"))
 
 val interruptibleOnce =
