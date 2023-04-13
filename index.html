@@ -644,24 +644,16 @@ val blockingCancelable =
         </div>
     </div>
 
-        <div class="sl-block" data-block-type="code" style="width: 1075.2px; height: 469px; left: 93px; top: 162px;" data-name="code-dc2e86" data-block-id="56ec189d4b3da9d3f2838cc70371af59"><div class="sl-block-content notranslate" data-highlight-theme="monokai" data-code-frame="none" style="z-index: 11;"><pre style="font-size: 20px; line-height: 24px;" class="scala"><code data-line-numbers="1-18|2-8|10-11|13-14|16-17" style="padding: 5px;" data-fragment-index="0">trait IOApp {
-  def run(args: List[String]): IO[ExitCode]
-  def main(args: Array[String]): Unit =
-    IOAppPlatform.main(
-    args,
-    Eval.later(contextShift),
-    Eval.later(timer)
-  )(run)
-
-  implicit protected def contextShift: ContextShift[IO] =
-    IOAppPlatform.defaultContextShift
-
-  implicit protected def timer: Timer[IO] =
-    IOAppPlatform.defaultTimer
-
-  protected def executionContext: ExecutionContext =
-    IOAppPlatform.defaultExecutionContext
-}</code></pre></div></div>
+        <div class="sl-block" data-block-type="code" style="width: 1075.2px; height: 469px; left: 93px; top: 162px;" data-name="code-dc2e86" data-block-id="56ec189d4b3da9d3f2838cc70371af59"><div class="sl-block-content notranslate" data-highlight-theme="monokai" data-code-frame="none" style="z-index: 11;"><pre style="font-size: 20px; line-height: 24px;" class="scala"><code data-line-numbers="1-18|2-8|10-11|13-14|16-17" style="padding: 5px;" data-fragment-index="0">
+	final class IORuntime private[unsafe] (
+          val compute: ExecutionContext,
+          private[effect] val blocking: ExecutionContext,
+          val scheduler: Scheduler,
+    	  private[effect] val fiberMonitor: FiberMonitor,
+    	  val shutdown: () => Unit,
+    	  val config: IORuntimeConfig
+	)
+	</code></pre></div></div>
         <div class="sl-block" data-block-type="image" style="width: 1075.2px; height: 38.1234px; left: 93px; top: 121px; min-width: 1px; min-height: 1px;" data-name="image-e2432f" data-block-id="4218475b7529679d0d0dd10093f420a7"><div class="sl-block-content" style="z-index: 12;" data-inline-svg="false"><img style="" data-natural-width="1805" data-natural-height="64" data-lazy-loaded="" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/2162590/images/9645239/codeHeader.svg"></div></div></section><section data-background-color="rgb(0, 8, 48)" data-id="c3d2c69ce560999db1bafe2e1300c97b"><div class="sl-block" data-block-type="text" style="width: 1208px; left: 500px; top: 24.5px; height: auto;" data-block-id="e6d5200c69c0cde4de048df6e441e243">
         <div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text" style="z-index: 10; color: rgb(255, 255, 255);">
             <h2>Thread Pools</h2>
